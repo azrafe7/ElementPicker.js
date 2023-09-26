@@ -7,10 +7,10 @@ Forked from https://github.com/AlienKevin/html-element-picker for custom mods:
  - pass event on trigger
  - ... more
 
-Many thanks to [https://github.com/AlienKevin](https://github.com/AlienKevin) for the wonderful work. :clap:
+Many thanks to [https://github.com/AlienKevin](https://github.com/AlienKevin) for the wonderful work. :clap: :pray:
 
 
-# Original README follows:
+# -- ORIGINAL README FOLLOWS --
 
 # html-element-picker
 **Pick and highlight any HTML element on a page using only Vanilla JS. Hovered elements are automatically highlighted in the color you want. Tested in Chrome, Firefox, and Opera, does not work in IE.**
