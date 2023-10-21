@@ -8,7 +8,7 @@
     }
 
     class ElementPicker {
-        VERSION = "0.2.2";
+        VERSION = "0.2.3";
         
         constructor(options) {
             // MUST create hover box first before applying options
