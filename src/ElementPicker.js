@@ -8,6 +8,8 @@
     }
 
     class ElementPicker {
+        VERSION = "0.2.1";
+        
         constructor(options) {
             // MUST create hover box first before applying options
             this.hoverBox = document.createElement("div");
@@ -50,6 +52,7 @@
     
             const defaultOptions = {
                 container: null, // if falsey an iframe will be used
+                iFrameId: null, // only used if container is falsey to name the built iframe
                 enabled: true,
                 selectors: "*", // default to pick all elements
                 background: "rgba(153, 235, 255, 0.5)", // transparent light blue
@@ -67,11 +70,11 @@
             };
 
             if (!mergedOptions.container) {
-              let zapperIFrame = document.createElement('iframe');
-              zapperIFrame.id = 'zapper_iframe';
-              document.documentElement.append(zapperIFrame);
+              let pickerIFrame = document.createElement('iframe');
+              pickerIFrame.id = mergedOptions.iFrameId ?? 'picker_iframe';
+              document.documentElement.append(pickerIFrame);
 
-              const zapperIFrameCSS = `
+              const pickerIFrameCSS = `
                 backgroundColor: transparent;
                 left: 0px;
                 top: 0px;
@@ -84,11 +87,11 @@
                 color-scheme: none;
               `;
               
-              zapperIFrame.style = zapperIFrameCSS;
-              zapperIFrame.contentDocument.body.style = zapperIFrameCSS;
-              this.iframe = zapperIFrame;
-              mergedOptions.container = zapperIFrame.contentDocument.body;
-              mergedOptions.ignoreElements.push(zapperIFrame);
+              pickerIFrame.style = pickerIFrameCSS;
+              pickerIFrame.contentDocument.body.style = pickerIFrameCSS;
+              this.iframe = pickerIFrame;
+              mergedOptions.container = pickerIFrame.contentDocument.body;
+              mergedOptions.ignoreElements.push(pickerIFrame);
             }
 
             Object.keys(mergedOptions).forEach((key) => {
