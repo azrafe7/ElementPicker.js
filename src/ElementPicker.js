@@ -8,7 +8,7 @@
     }
 
     class ElementPicker {
-        VERSION = "0.2.1";
+        VERSION = "0.2.2";
         
         constructor(options) {
             // MUST create hover box first before applying options
@@ -28,8 +28,6 @@
               height: 0,
             }
             this.hoverBoxInfo.innerText = "";
-            // document.styleSheets[0].insertRule('#EP_hoverBoxInfo:empty { display: none;}', 0); // hide when empty
-            // ↑ done in CSS
             this.hoverBoxInfo.style = 
               `background-color: rgba(0,0,0,.5);
               border-radius: 0 0 0 0;
@@ -120,6 +118,7 @@
                     if (target === this.hoverBox || target === this.container) {
                         // the truely hovered element behind the added hover box
                         const hoveredElements = document.elementsFromPoint(e.clientX, e.clientY);
+                        // console.log(hoveredElements);
                         let hoveredElement = hoveredElements[0];
                         for (hoveredElement of hoveredElements) {
                           if ((this.iframe && this.iframe.contains(hoveredElement)) || this.container.contains(hoveredElement)) {
@@ -150,8 +149,8 @@
                     this.hoverBox.style.outline = this.outlineWidth + "px solid " + this.outlineColor;
                     
                     // need scrollX and scrollY to account for scrolling
-                    this.hoverBox.style.top = targetOffset.top + (this.iframe ? 0 : window.scrollY) - this.borderWidth + "px";
-                    this.hoverBox.style.left = targetOffset.left + (this.iframe ? 0 : window.scrollX) - this.borderWidth + "px";
+                    this.hoverBox.style.top = (target.tagName === 'HTML' ? 0 : targetOffset.top) + (this.iframe ? 0 : window.scrollY) - this.borderWidth + "px";
+                    this.hoverBox.style.left = (target.tagName === 'HTML' ? 0 : targetOffset.left) + (this.iframe ? 0 : window.scrollX) - this.borderWidth + "px";
 
                     // const infoText = `${targetText} ${targetWidth} × ${targetHeight}`;
                     const attrs = Array.from(target.attributes, ({name, value}) => (name + '=' + value));
@@ -174,6 +173,8 @@
                       text: infoText,
                     }
 
+                    // console.log(this.hoverInfo);
+                    
                     if (this._triggered && this.action.callback) {
                         // console.log("TRIGGERED");
                         this.action.callback(this._actionEvent, target);
@@ -207,6 +208,7 @@
             this.container.style.visibility = this._enabled ? "visible" : "hidden";
             if (this.iframe) {
               this.iframe.style.visibility = this._enabled ? "visible" : "hidden";
+              this.iframe.style.display = this._enabled ? "block" : "none";
             }
             this._triggered = false;
             // console.log("set enabled:", this._enabled);
