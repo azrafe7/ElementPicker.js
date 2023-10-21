@@ -82,6 +82,7 @@
                 overflow: hidden;
                 z-index: 2147483647 !important;
                 margin: 0px;
+                border: 0px;
                 color-scheme: none;
               `;
               
