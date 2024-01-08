@@ -3,8 +3,8 @@
  * 
  * MIT Licensed
  * 
- * Copyright (c) 2019 Kevin Li [AlienKevin] (original work)
- * Copyright (c) 2023 Giuseppe Di Mauro [azrafe7] (fork with later additions/changes)
+ * Copyright (c) 2019 Kevin Li [AlienKevin] (original work - https://github.com/AlienKevin/html-element-picker)
+ * Copyright (c) 2023 Giuseppe Di Mauro [azrafe7] (fork with later additions/changes - https://github.com/azrafe7/ElementPicker.js)
  */
 
 (function() {
